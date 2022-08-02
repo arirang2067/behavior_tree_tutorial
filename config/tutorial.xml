@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Sequence>
+            <Action ID="Move" move_command="3.141592"/>
+        </Sequence>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="Move">
+            <input_port default="0" name="move_command"/>
+        </Action>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+
