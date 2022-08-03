@@ -3,13 +3,15 @@
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
         <Sequence>
-            <Action ID="Move" move_command="3.141592"/>
+            <Action ID="Action" action_command="OpenFridge"/>
+            <Action ID="Action" action_command="GrabBeer"/>
+            <Action ID="Action" action_command="CloseFridge"/>
         </Sequence>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
-        <Action ID="Move">
-            <input_port default="0" name="move_command"/>
+        <Action ID="Action">
+            <input_port default="done" name="action_command"/>
         </Action>
     </TreeNodesModel>
     <!-- ////////// -->

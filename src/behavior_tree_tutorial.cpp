@@ -6,10 +6,10 @@
 
 BT::BehaviorTreeFactory factory;
 
-class Move : public BT::AsyncActionNode
+class Action : public BT::AsyncActionNode
 {
 public:
-  Move(const std::string &name, const BT::NodeConfiguration &config)
+  Action(const std::string &name, const BT::NodeConfiguration &config)
       : BT::AsyncActionNode(name, config){};
   static BT::PortsList providedPorts();
   BT::NodeStatus tick();
@@ -22,22 +22,22 @@ private:
   std::atomic_bool _halt_requested;
 };
 
-BT::PortsList Move::providedPorts()
+BT::PortsList Action::providedPorts()
 {
-  return {BT::InputPort<double>("move_command")};
+  return {BT::InputPort<std::string>("action_command")};
 }
-BT::NodeStatus Move::tick()
+BT::NodeStatus Action::tick()
 {
   _halt_requested.store(false);
-  double cmd;
-  getInput<double>("move_command", cmd);
-  ROS_INFO_STREAM("[Move] : " << cmd);
+  std::string cmd;
+  getInput<std::string>("action_command", cmd);
+  ROS_INFO_STREAM("[Action] : " << cmd);
   return _halt_requested ? BT::NodeStatus::FAILURE : BT::NodeStatus::SUCCESS;
 }
 
 void RegisterNodes(BT::BehaviorTreeFactory &factory)
 {
-  factory.registerNodeType<Move>("Move");
+  factory.registerNodeType<Action>("Action");
 }
 
 int main(int argc, char** argv)
