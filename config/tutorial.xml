@@ -3,7 +3,8 @@
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
         <Sequence>
-            <Action ID="Action" action_command="OpenFridge"/>
+            <SetBlackboard output_key="ABC" value="333"/>
+            <Action ID="Action" action_command="{ABC}"/>
             <Action ID="Action" action_command="GrabBeer"/>
             <Action ID="Action" action_command="CloseFridge"/>
         </Sequence>

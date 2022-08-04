@@ -31,7 +31,7 @@ BT::NodeStatus Action::tick()
   _halt_requested.store(false);
   std::string cmd;
   getInput<std::string>("action_command", cmd);
-  ROS_INFO_STREAM("[Action] : " << cmd);
+  ROS_INFO_STREAM("[Action] : " << cmd << _halt_requested);
   return _halt_requested ? BT::NodeStatus::FAILURE : BT::NodeStatus::SUCCESS;
 }
 
@@ -64,6 +64,7 @@ int main(int argc, char** argv)
   while(ros::ok())
   {
     tree.tickRoot();
+    ROS_INFO_STREAM("[Root] : " << tree.tickRoot());
     ros::spinOnce();
     loop_rate.sleep();
   }
